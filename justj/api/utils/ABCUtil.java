@@ -1,19 +1,28 @@
 package scripts.justj.api.utils;
 
+import org.tribot.api.interfaces.Clickable;
 import org.tribot.api.interfaces.Positionable;
 import org.tribot.api.util.abc.ABCProperties;
 import org.tribot.api.util.abc.preferences.OpenBankPreference;
 import org.tribot.api.util.abc.preferences.WalkingPreference;
 import org.tribot.api2007.Combat;
 import org.tribot.api2007.Game;
+import org.tribot.api2007.Objects;
 import org.tribot.api2007.Options;
+import org.tribot.api2007.types.RSObject;
 import scripts.justj.api.JustLogger;
 
+import java.util.Arrays;
+import java.util.Optional;
+
+/**
+ * Original author: Encoded
+ */
 public class ABCUtil extends org.tribot.api.util.abc.ABCUtil {
 
     private static final JustLogger LOGGER = new JustLogger(ABCUtil.class);
 
-    private static double reactionSleepModifier = 1.0;
+    private static double reactionSleepModifier = 0.6;
 
     private static ABCUtil instance = new ABCUtil();
     private int runActivation;
@@ -177,6 +186,13 @@ public class ABCUtil extends org.tribot.api.util.abc.ABCUtil {
         if (getInstance().shouldPickupMouse()) {
             LOGGER.info("Picking up mouse");
             getInstance().pickupMouse();
+        }
+    }
+
+    public static void performHoverNext(Clickable next) {
+        if (ABCUtil.shouldHoverNext()) {
+            LOGGER.info("Hovering next");
+            Optional.ofNullable(next).ifPresent(Clickable::hover);
         }
     }
 

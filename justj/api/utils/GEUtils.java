@@ -30,7 +30,7 @@ public class GEUtils {
         TribotUtil.getName(rsObject).equals(Constants.Objects.GRAND_EXCHANGE_BOOTH)
             && TribotUtil.getActions(rsObject).contains("Exchange")))
         .findFirst()
-        .map(rsObject -> AccurateMouse.click(rsObject, "Exchange")
+        .map(rsObject -> MouseUtils.click(rsObject, "Exchange")
             && Waiting.waitCondition(() -> GrandExchange.getWindowState() != null, General.random(3000, 4000)))
         .orElse(false);
   }

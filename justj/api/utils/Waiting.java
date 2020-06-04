@@ -11,15 +11,15 @@ import java.util.function.Supplier;
 public class Waiting {
 
   public static boolean waitAfterWalking(BooleanSupplier supplier, long timeout) {
-    return waitAfterWalking(supplier, timeout, true);
+    return waitAfterWalking(supplier, timeout, 50);
   }
 
-  public static boolean waitAfterWalking(BooleanSupplier supplier, long timeout, boolean useABC) {
+  public static boolean waitAfterWalking(BooleanSupplier supplier, long timeout, long checkEvery) {
     ABCUtil.performActions();
     if (waitCondition(Player::isMoving, 1000)) {
       waitCondition(() -> !Player.isMoving(), General.random(8153, 12321));
     }
-    return waitWithABC(supplier, timeout);
+    return waitWithABC(supplier, timeout, checkEvery);
   }
 
   public static boolean waitWithABC(BooleanSupplier supplier, long timeout) {
@@ -29,7 +29,7 @@ public class Waiting {
 
   public static boolean waitWithABC(BooleanSupplier supplier, long timeout, long checkEvery) {
     ABCUtil.performActions();
-    return waitCondition(supplier, timeout);
+    return waitCondition(supplier, timeout, checkEvery);
   }
 
   public static boolean waitCondition(BooleanSupplier supplier, long timeout) {

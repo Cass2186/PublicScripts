@@ -1,7 +1,9 @@
 package scripts.justj.api.utils;
 
+import org.tribot.api.General;
 import org.tribot.api.input.Mouse;
 import org.tribot.api2007.Game;
+import org.tribot.api2007.GameTab;
 import org.tribot.api2007.Inventory;
 import org.tribot.api2007.types.RSItem;
 import scripts.dax_api.shared.helpers.RSItemHelper;

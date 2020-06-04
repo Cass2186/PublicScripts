@@ -9,4 +9,8 @@ public interface Task {
 
   boolean run();
 
+  default String getStatus() {
+    return this.getClass().getSimpleName();
+  }
+
 }

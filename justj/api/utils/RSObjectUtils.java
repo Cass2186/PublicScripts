@@ -1,6 +1,7 @@
 package scripts.justj.api.utils;
 
 import org.tribot.api.interfaces.Positionable;
+import org.tribot.api2007.Game;
 import org.tribot.api2007.Player;
 import org.tribot.api2007.types.RSAnimableEntity;
 import org.tribot.api2007.types.RSObject;
@@ -25,6 +26,11 @@ public class RSObjectUtils {
   }
 
   public static boolean click(RSObject rsObject, String action) {
+    if (!action.contains("Use") && Game.getItemSelectionState() == 1) {
+      //Unselect item
+      InventoryUtils.clickItem(Game.getSelectedItemName());
+    }
+
     if (!rsObject.isOnScreen() || !rsObject.isClickable()) {
       DaxCamera.focus(rsObject);
     }
